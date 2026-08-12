@@ -1,36 +1,25 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Market Intelligence Dashboard
 
-## Getting Started
+A custom-built, automated web dashboard that scans your Meco newsletter inbox using Playwright, parses the contents with Gemini AI (3.5 Flash), and highlights the most unique, actionable, and relevant market intelligence for trading and forecasting.
 
-First, run the development server:
+## Live Application
+This dashboard is deployed live on Render:
+**[https://meco-dashboard.onrender.com/](https://meco-dashboard.onrender.com/)**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Technology Stack
+- **Frontend/Backend:** Next.js, React, TailwindCSS
+- **AI Processing:** Google Gemini 3.5 Flash
+- **Web Scraping:** Playwright (Standard Chromium via Docker)
+- **Deployment:** Render.com (Docker Environment)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## How it Works
+1. A headless Chromium browser navigates to the Meco web application.
+2. It uses securely stored session cookies (`MECO_AUTH_STATE`) to bypass login.
+3. The inbox content is scraped and passed to a highly tuned Gemini AI prompt.
+4. The AI identifies distinct newsletters, summarizes them, extracts actionable insights, and scores them based on their relevance to market trading.
+5. The results are presented in a clean, responsive UI.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Environment Setup
+If running this locally, you must provide the following environment variables:
+- `GEMINI_API_KEY`: Your Google Generative AI API key.
+- `MECO_AUTH_STATE`: The JSON string content of your Meco browser session cookies.
